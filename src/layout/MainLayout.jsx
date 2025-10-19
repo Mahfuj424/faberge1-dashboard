@@ -1,0 +1,35 @@
+import { Outlet } from "react-router-dom";
+import Sidebar from "../component/Main/Sidebar/Sidebar";
+import Header from "../component/Main/Header/Header";
+import { useState } from "react";
+
+const MainLayout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+  return (
+    <main className="w-full flex bg-gray-50 min-h-screen">
+      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      {/* Main Content */}
+      <section className="w-full h-full md:ml-[250px] lg:ml-[250px] xl:ml-[320px]">
+        <div className="md:my-7 md:pt-0 pt-14 md:mx-24">
+          <Header toggleSidebar={toggleSidebar} />
+        </div>
+        <div className="md:px-20 bg-gradient-to-tl from-[#fdeaea] via-[#fff1f3] to-[#ffdae1] min-h-screen">
+          <Outlet />
+        </div>
+      </section>
+
+      {/* Overlay when sidebar is open on mobile */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-30 px-10"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+    </main>
+  );
+};
+export default MainLayout;
