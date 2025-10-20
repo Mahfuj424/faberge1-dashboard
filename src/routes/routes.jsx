@@ -19,6 +19,13 @@ import Notification from "../component/Main/Notification/Notification";
 import EarningsPage from "../page/EarningsPage/EarningsPage";
 import UsersPage from "../page/Users/UsersPage";
 import Analytics from "../page/Analytics/Analytics";
+import ServicePage from "../page/Service/ServicePage";
+import States from "../page/States/States";
+import BookingsPage from "../page/Bookings/BookingsPage";
+import TransactionsPage from "../page/Transaction/TransactionPage";
+import CreateManager from "../page/CreateManager/CreateManager";
+import ManagerManagement from "../page/ManagerManagement/ManagerManagement";
+import { HelpCircleIcon } from "lucide-react";
 
 const router = createBrowserRouter([
   {
@@ -51,12 +58,40 @@ const router = createBrowserRouter([
         element: <Analytics />,
       },
       {
+        path: "services",
+        element: <ServicePage />,
+      },
+      {
+        path: "bookings",
+        element: <BookingsPage />,
+      },
+      {
+        path: "states",
+        element: <States />,
+      },
+      {
+        path: "transaction",
+        element: <TransactionsPage />,
+      },
+      {
+        path: "create-manager",
+        element: <CreateManager />,
+      },
+      {
+        path: "manager-management",
+        element: <ManagerManagement />,
+      },
+      {
         path: "edit-personal-info",
         element: <EditPersonalInformationPage />,
       },
       {
         path: "/notification",
         element: <Notification />,
+      },
+      {
+        path: "/help",
+        element: <HelpCircleIcon />,
       },
       {
         path: "settings",

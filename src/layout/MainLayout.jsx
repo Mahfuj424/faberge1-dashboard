@@ -17,7 +17,7 @@ const MainLayout = () => {
         <div className="md:my-7 md:pt-0 pt-14 md:mx-24">
           <Header toggleSidebar={toggleSidebar} />
         </div>
-        <div className="md:px-20 bg-gradient-to-tl from-[#fdeaea] via-[#fff1f3] to-[#ffdae1] min-h-screen">
+        <div className="md:px-20 bg-gradient-to-tl from-[#ffecec] via-[#ffe1e7] to-[#ffd4db] min-h-screen">
           <Outlet />
         </div>
       </section>

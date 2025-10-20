@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import ConfirmationModal from "../../ui/Modals/ConfirmationModal";
+import UserDetailsModal from "../../ui/Modals/UserDetailsModal"; // ✅ import modal
 
 const mockBookings = [
   {
@@ -38,8 +39,12 @@ const UpcomingBooking = () => {
   const [bookings, setBookings] = useState(mockBookings);
   const [deleteId, setDeleteId] = useState(null);
 
-  const handleView = (id) => {
-    navigate(`/booking/${id}`);
+  // ✅ for viewing user details
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleView = (booking) => {
+    // open modal with selected booking info
+    setSelectedUser(booking);
   };
 
   const handleDelete = (id) => {
@@ -66,7 +71,7 @@ const UpcomingBooking = () => {
         </button>
       </div>
 
-      {/* 🔹 Responsive Scroll Container */}
+      {/* Responsive Scroll Container */}
       <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-pink-200 scrollbar-track-pink-50">
         <div className="min-w-[900px] divide-y divide-pink-100">
           {bookings.map((booking) => (
@@ -85,7 +90,6 @@ const UpcomingBooking = () => {
                   <p className="text-sm font-semibold text-[#e91e63] cursor-pointer hover:underline">
                     {booking.name}
                   </p>
-                  <p className="text-xs text-gray-500">{booking.userId}</p>
                 </div>
               </div>
 
@@ -123,7 +127,7 @@ const UpcomingBooking = () => {
               <div className="flex items-center gap-4 text-[#e91e63] w-[80px] justify-end shrink-0">
                 <EyeOutlined
                   className="cursor-pointer hover:text-pink-500 text-lg"
-                  onClick={() => handleView(booking.id)}
+                  onClick={() => handleView(booking)} // ✅ opens modal
                 />
                 <DeleteOutlined
                   className="cursor-pointer hover:text-red-500 text-lg"
@@ -134,6 +138,18 @@ const UpcomingBooking = () => {
           ))}
         </div>
       </div>
+
+      {/* ✅ View User Details Modal */}
+      <UserDetailsModal
+        isOpen={!!selectedUser}
+        user={selectedUser}
+        type="customer"
+        onClose={() => setSelectedUser(null)}
+        onAction={(user) => {
+          console.log("Action performed for:", user.name);
+          setSelectedUser(null);
+        }}
+      />
 
       {/* Delete Confirmation Modal */}
       <ConfirmationModal

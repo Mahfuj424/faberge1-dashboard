@@ -4,6 +4,7 @@ import { Input, Button } from "antd";
 import UserTable from "../../ui/UserTable";
 import UserDetailsModal from "../../ui/Modals/UserDetailsModal";
 import ConfirmationModal from "../../ui/Modals/ConfirmationModal";
+import CreateWorkerModal from "../../ui/Modals/CreateWorkerModal";
 
 const mockWorkers = [
   {
@@ -35,6 +36,7 @@ const UserManagement = () => {
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [userToBlock, setUserToBlock] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   // view modal open
   const handleView = (user) => setSelectedUser(user);
@@ -57,7 +59,7 @@ const UserManagement = () => {
   };
 
   const handleAddNew = () => {
-    console.log("Add New clicked!");
+    setIsCreateModalOpen(true);
   };
 
   const filteredData =
@@ -153,6 +155,12 @@ const UserManagement = () => {
         cancelText="Cancel"
         onConfirm={handleBlock}
         onCancel={handleCancelBlock}
+      />
+
+      {/* create worker modal */}
+      <CreateWorkerModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
       />
     </div>
   );
