@@ -24,7 +24,7 @@ const SignIn = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-6">
           <img
-            src="/public/logo/logo.png" // 🔹 replace with your logo path
+            src="/logo/logo.png" 
             alt="IHBS Logo"
             className="w-40 h-40 object-contain mb-2"
           />
