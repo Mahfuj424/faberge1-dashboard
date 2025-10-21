@@ -39,6 +39,7 @@ const ForgotPassword = () => {
         <form onSubmit={handleSubmit} className="space-y-5 text-left">
           <div>
             <input
+              name="email"
               type="email"
               value={email}
               onChange={(e) => {

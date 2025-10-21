@@ -179,6 +179,7 @@ const ProfileForm = () => {
                 <input
                   type="password"
                   name="currentPassword"
+                  placeholder="Current Password..."
                   value={passwords.currentPassword}
                   onChange={handlePasswordChange}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
@@ -192,6 +193,7 @@ const ProfileForm = () => {
                 <input
                   type="password"
                   name="newPassword"
+                  placeholder="New Password..."
                   value={passwords.newPassword}
                   onChange={handlePasswordChange}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
@@ -205,6 +207,7 @@ const ProfileForm = () => {
                 <input
                   type="password"
                   name="confirmPassword"
+                  placeholder="Confirm Password..."
                   value={passwords.confirmPassword}
                   onChange={handlePasswordChange}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"

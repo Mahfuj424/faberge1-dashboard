@@ -51,7 +51,7 @@ const CreateManager = () => {
 
   return (
     <div className="min-h-screen flex justify-center py-10 px-4 ">
-      <div className="w-full md:w-2/4 mx-auto shadow-md rounded-2xl p-8 ">
+      <div className="w-full md:w-2/4 mx-auto shadow-md rounded-2xl bg-white p-8 ">
         <h1 className="text-xl font-semibold text-gray-800 mb-6">
           Create Manager
         </h1>
