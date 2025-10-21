@@ -26,6 +26,7 @@ import TransactionsPage from "../page/Transaction/TransactionPage";
 import CreateManager from "../page/CreateManager/CreateManager";
 import ManagerManagement from "../page/ManagerManagement/ManagerManagement";
 import { HelpCircleIcon } from "lucide-react";
+import HelpSupport from "../page/Help&Support/HelpSupport";
 
 const router = createBrowserRouter([
   {
@@ -91,7 +92,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/help",
-        element: <HelpCircleIcon />,
+        element: <HelpSupport />,
       },
       {
         path: "settings",
@@ -131,7 +132,11 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: "forget-password",
+        path: 'sign-in',
+        element: <SignIn />,
+      },
+      {
+        path: "forgot-password",
         element: <ForgetPassword />,
       },
       {

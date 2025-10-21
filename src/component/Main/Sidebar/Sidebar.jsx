@@ -53,7 +53,7 @@ const Sidebar = () => {
     setShowModal(false);
     // simulate logout action
     toast.success("User Logged Out!");
-    console.log("User logged out!");
+    navigate('/auth/sign-in')
   };
 
   return (
@@ -86,7 +86,7 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-5 py-2 mx-3 rounded-md text-sm transition-all duration-300 ${
                   isActive
-                    ? "bg-white text-[#e91e63] font-semibold"
+                    ? "bg-white text-[#e91e63] "
                     : "hover:bg-[#f4c5d0] text-white"
                 }`
               }

@@ -31,7 +31,7 @@ const contactMessages = [
 
 const HelpSupport = () => {
   return (
-    <div className="p-6 bg-gradient-to-br from-pink-50 to-white min-h-screen">
+    <div className="p-6">
       <h1 className="text-xl font-semibold text-gray-800 mb-4">
         Help & Support Messages
       </h1>
