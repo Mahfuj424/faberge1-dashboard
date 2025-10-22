@@ -2,6 +2,7 @@ import { useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import UpdateServiceModal from "../../component/ui/Modals/UpdateServiceModal";
 import ConfirmationModal from "../../component/ui/Modals/ConfirmationModal";
+import AddServiceModal from "../../component/ui/Modals/AddServiceModal";
 
 const ServicePage = () => {
   const [services, setServices] = useState([
@@ -10,7 +11,8 @@ const ServicePage = () => {
   ]);
 
   const [deleteId, setDeleteId] = useState(null);
-  const [editService, setEditService] = useState(null); 
+  const [editService, setEditService] = useState(null);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   // 🗑️ Delete Confirmation
   const handleDelete = (id) => {
@@ -34,9 +36,30 @@ const ServicePage = () => {
     setEditService(null);
   };
 
+  const handleAddService = (newService) => {
+    const newServiceObj = {
+      id: services.length + 1,
+      name: newService.name,
+      price: newService.price,
+      gel: newService.gel || 0,
+      water: newService.water || 0,
+    };
+    setServices((prev) => [...prev, newServiceObj]);
+    setShowAddModal(false);
+  };
+
   return (
     <div className="p-6">
       <h1 className="text-xl font-semibold text-gray-800 mb-4">Services</h1>
+
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="bg-pink-600 text-white py-2 px-4 rounded"
+        >
+          Add New
+        </button>
+      </div>
 
       <div className="overflow-x-auto bg-white rounded-xl border border-pink-100 shadow-sm">
         <table className="w-full text-left text-sm text-gray-700 min-w-[600px]">
@@ -57,8 +80,8 @@ const ServicePage = () => {
               >
                 <td className="px-6 py-3">{service.name}</td>
                 <td className="px-6 py-3">${service.price}</td>
-                <td className="px-6 py-3">${service.gel}</td>
-                <td className="px-6 py-3">${service.water}</td>
+                <td className="px-6 py-3">{service.gel}</td>
+                <td className="px-6 py-3">{service.water}</td>
                 <td className="px-6 py-3 text-right flex justify-end gap-4 text-[#e91e63]">
                   <EditOutlined
                     onClick={() => handleEdit(service)}
@@ -92,6 +115,13 @@ const ServicePage = () => {
         service={editService}
         onClose={() => setEditService(null)}
         onSave={handleUpdate}
+      />
+
+      {/* Add New Service Modal */}
+      <AddServiceModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAddService={handleAddService}
       />
     </div>
   );

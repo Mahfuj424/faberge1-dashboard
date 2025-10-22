@@ -60,33 +60,41 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Gel
-          </label>
-          <input
-            type="number"
-            name="gel"
-            placeholder="Price ($)"
-            value={formData.gel}
-            onChange={handleChange}
-            className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
-          />
-        </div>
+        {/* If it's Manicure or Pedicure, show 3 fields: Price, Gel, and Water */}
+        {(formData.name === "Manicure" || formData.name === "Pedicure") && (
+          <>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Gel
+              </label>
+              <input
+                type="number"
+                name="gel"
+                placeholder="Gel Price ($)"
+                value={formData.gel}
+                onChange={handleChange}
+                className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Water
-          </label>
-          <input
-            type="number"
-            name="water"
-            placeholder="Price ($)"
-            value={formData.water}
-            onChange={handleChange}
-            className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
-          />
-        </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Water
+              </label>
+              <input
+                type="number"
+                name="water"
+                placeholder="Water Price ($)"
+                value={formData.water}
+                onChange={handleChange}
+                className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
+              />
+            </div>
+          </>
+        )}
+
+        {/* If it's not Manicure or Pedicure, show only the price */}
+        
 
         {/* Buttons */}
         <div className="flex justify-center gap-4 mt-6">
