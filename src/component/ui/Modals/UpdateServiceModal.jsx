@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "antd";
 
 const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
-  console.log(service)
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
     price: "",
     gel: "",
@@ -12,11 +12,12 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
 
   useEffect(() => {
     if (service) {
+      // ✅ সাব-সার্ভিস থেকে Gel এবং Water এর দাম বের করছি
       const gelSub = service.subServices?.find((s) => s.name === "Gel");
       const waterSub = service.subServices?.find((s) => s.name === "Water");
 
       setFormData({
-        id: service.id,
+        id: service.id || "",
         name: service.name || "",
         price: service.price || "",
         gel: gelSub?.price || "",
@@ -25,14 +26,34 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
     }
   }, [service]);
 
+  // ✅ ইনপুট পরিবর্তন হ্যান্ডেল
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // ✅ ফর্ম সাবমিট
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("🛠 Updated Service:", formData);
-    onSave(formData);
+
+    // clean data বানাচ্ছি
+    const updatedData = {
+      id: formData.id,
+      name: formData.name.trim(),
+      price: Number(formData.price),
+      subServices: [],
+    };
+
+    // যদি Manicure বা Pedicure হয়, তাহলে subServices যোগ হবে
+    if (formData.name === "Manicure" || formData.name === "Pedicure") {
+      updatedData.subServices.push(
+        { name: "Gel", price: Number(formData.gel) || 0 },
+        { name: "Water", price: Number(formData.water) || 0 }
+      );
+    }
+
+    console.log("🛠 Final Updated Service:", updatedData);
+    onSave(updatedData);
   };
 
   return (
@@ -62,6 +83,7 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
             value={formData.name}
             onChange={handleChange}
             className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
+            required
           />
         </div>
 
@@ -77,6 +99,7 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
             value={formData.price}
             onChange={handleChange}
             className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
+            required
           />
         </div>
 
