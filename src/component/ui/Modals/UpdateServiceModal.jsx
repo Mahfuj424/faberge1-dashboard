@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "antd";
 
 const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
+  console.log(service)
   const [formData, setFormData] = useState({
     name: "",
     price: "",
@@ -11,12 +12,15 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
 
   useEffect(() => {
     if (service) {
+      const gelSub = service.subServices?.find((s) => s.name === "Gel");
+      const waterSub = service.subServices?.find((s) => s.name === "Water");
+
       setFormData({
         id: service.id,
         name: service.name || "",
         price: service.price || "",
-        gel: service.gel || "",
-        water: service.water || "",
+        gel: gelSub?.price || "",
+        water: waterSub?.price || "",
       });
     }
   }, [service]);
@@ -41,36 +45,52 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
       className="update-service-modal"
     >
       <h2 className="text-lg font-semibold mb-4">
-        Update {formData.name || "Service"}
+        Update {service?.name || "Service"}
       </h2>
       <hr className="border-gray-300 mb-5" />
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* 🔹 Service Name Field */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {formData.name}
+            Service Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter service name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
+          />
+        </div>
+
+        {/* 🔹 Price Field */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Price ($)
           </label>
           <input
             type="number"
             name="price"
-            placeholder="Price ($)"
+            placeholder="Enter price"
             value={formData.price}
             onChange={handleChange}
             className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
           />
         </div>
 
-        {/* If it's Manicure or Pedicure, show 3 fields: Price, Gel, and Water */}
+        {/* 🔹 Conditional Fields for Manicure/Pedicure */}
         {(formData.name === "Manicure" || formData.name === "Pedicure") && (
           <>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Gel
+                Gel Price ($)
               </label>
               <input
                 type="number"
                 name="gel"
-                placeholder="Gel Price ($)"
+                placeholder="Enter gel price"
                 value={formData.gel}
                 onChange={handleChange}
                 className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
@@ -79,12 +99,12 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Water
+                Water Price ($)
               </label>
               <input
                 type="number"
                 name="water"
-                placeholder="Water Price ($)"
+                placeholder="Enter water price"
                 value={formData.water}
                 onChange={handleChange}
                 className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
@@ -93,10 +113,7 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
           </>
         )}
 
-        {/* If it's not Manicure or Pedicure, show only the price */}
-        
-
-        {/* Buttons */}
+        {/* 🔹 Buttons */}
         <div className="flex justify-center gap-4 mt-6">
           <button
             type="submit"

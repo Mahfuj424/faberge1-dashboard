@@ -5,14 +5,12 @@ import { useState } from "react";
 const UserTable = ({ data, type, onView, onDelete }) => {
   const [searchValue, setSearchValue] = useState("");
 
-  // ✅ Filter Data
   const filteredData = data.filter((user) =>
     user.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-pink-100 mt-4">
-      {/* Search Bar */}
       <div className="p-5 border-b border-pink-100">
         <Input
           placeholder={`Search ${type}s...`}
@@ -23,7 +21,6 @@ const UserTable = ({ data, type, onView, onDelete }) => {
         />
       </div>
 
-      {/* ✅ Responsive Scroll Container */}
       <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-pink-200 scrollbar-track-pink-50">
         <table className="min-w-[900px] w-full text-sm text-left text-gray-700">
           <thead className="bg-pink-50 text-gray-700 uppercase text-xs">
@@ -56,7 +53,7 @@ const UserTable = ({ data, type, onView, onDelete }) => {
                   key={user.id}
                   className="hover:bg-pink-50 border-b border-pink-100 transition-all"
                 >
-                  {/* ✅ Avatar + Name */}
+                  {/* Avatar + Name */}
                   <td className="px-6 py-3 flex items-center gap-3 w-[200px] shrink-0">
                     <img
                       src={user.avatar}
@@ -71,41 +68,28 @@ const UserTable = ({ data, type, onView, onDelete }) => {
                     </span>
                   </td>
 
-                  {/* ✅ Worker Columns */}
+                  {/* Worker Columns */}
                   {type === "worker" ? (
                     <>
-                      <td className="px-6 py-3 w-[120px] shrink-0">
-                        {user.workerId}
-                      </td>
-                      <td className="px-6 py-3 w-[160px] shrink-0">
-                        {user.location}
-                      </td>
-                      <td className="px-6 py-3 w-[240px] shrink-0">
-                        {user.services}
-                      </td>
-                      <td className="px-6 py-3 w-[120px] shrink-0">
+                      <td className="px-6 py-3 w-[120px]">{user.workerId}</td>
+                      <td className="px-6 py-3 w-[160px]">{user.location}</td>
+                      <td className="px-6 py-3 w-[240px]">{user.services}</td>
+                      <td className="px-6 py-3 w-[120px]">
                         <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">
                           {user.status}
                         </span>
                       </td>
                     </>
                   ) : (
-                    /* ✅ Customer Columns */
                     <>
-                      <td className="px-6 py-3 w-[160px] shrink-0">
-                        {user.location}
-                      </td>
-                      <td className="px-6 py-3 w-[240px] shrink-0">
-                        {user.email}
-                      </td>
-                      <td className="px-6 py-3 w-[160px] shrink-0">
-                        {user.phone}
-                      </td>
+                      <td className="px-6 py-3 w-[160px]">{user.location}</td>
+                      <td className="px-6 py-3 w-[240px]">{user.email}</td>
+                      <td className="px-6 py-3 w-[160px]">{user.phone}</td>
                     </>
                   )}
 
-                  {/* ✅ Actions */}
-                  <td className="px-6 py-3 text-right flex justify-end gap-4 text-[#e91e63] w-[100px] shrink-0">
+                  {/* Actions */}
+                  <td className="px-6 py-3 text-right flex justify-end gap-4 text-[#e91e63]">
                     <EyeOutlined
                       className="cursor-pointer hover:text-pink-500 text-lg"
                       onClick={() => onView(user)}

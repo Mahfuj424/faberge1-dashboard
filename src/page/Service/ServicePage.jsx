@@ -3,12 +3,10 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import UpdateServiceModal from "../../component/ui/Modals/UpdateServiceModal";
 import ConfirmationModal from "../../component/ui/Modals/ConfirmationModal";
 import AddServiceModal from "../../component/ui/Modals/AddServiceModal";
+import { allServices } from "../../constants/service";
 
 const ServicePage = () => {
-  const [services, setServices] = useState([
-    { id: 1, name: "Manicure", price: 35, gel: 10, water: 10 },
-    { id: 2, name: "Pedicure", price: 35, gel: 1, water: 10 },
-  ]);
+  const [services, setServices] = useState(allServices);
 
   const [deleteId, setDeleteId] = useState(null);
   const [editService, setEditService] = useState(null);
@@ -41,8 +39,8 @@ const ServicePage = () => {
       id: services.length + 1,
       name: newService.name,
       price: newService.price,
-      gel: newService.gel || 0,
-      water: newService.water || 0,
+      gel: newService.gel || "N/A",
+      water: newService.water || "N/A",
     };
     setServices((prev) => [...prev, newServiceObj]);
     setShowAddModal(false);
@@ -80,8 +78,12 @@ const ServicePage = () => {
               >
                 <td className="px-6 py-3">{service.name}</td>
                 <td className="px-6 py-3">${service.price}</td>
-                <td className="px-6 py-3">{service.gel}</td>
-                <td className="px-6 py-3">{service.water}</td>
+                <td className="px-6 py-3">
+                  {service.subServices?.map((s) => s.name === "Gel" && s.price)}
+                </td>
+                <td className="px-6 py-3">
+                  {service.subServices?.map((s) => s.name === "Water" && s.price)}
+                </td>
                 <td className="px-6 py-3 text-right flex justify-end gap-4 text-[#e91e63]">
                   <EditOutlined
                     onClick={() => handleEdit(service)}
