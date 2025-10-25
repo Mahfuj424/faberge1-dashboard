@@ -9,6 +9,7 @@ const CreateManager = () => {
   const [formData, setFormData] = useState({
     name: "",
     address: "",
+    Zip: "",
     city: "",
     state: "",
     email: "",
@@ -74,19 +75,35 @@ const CreateManager = () => {
           </div>
 
           {/* Address */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Address
-            </label>
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
-              placeholder="Enter Address"
-              required
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Address
+              </label>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
+                placeholder="Enter Address"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Zip Code
+              </label>
+              <input
+                type="text"
+                name="zip"
+                value={formData.zip}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
+                placeholder="Enter zip code"
+                required
+              />
+            </div>
           </div>
 
           {/* City & State */}

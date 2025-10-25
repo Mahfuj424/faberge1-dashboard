@@ -11,10 +11,11 @@ const CreateWorkerModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    email: "",
     address: "",
+    zip: "",
     city: "",
     state: "",
-    email: "",
     phone: "",
     workerId: "",
     password: "",
@@ -22,7 +23,6 @@ const CreateWorkerModal = ({ isOpen, onClose }) => {
   });
 
   // 🔹 Static Services
-  
 
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedSubServices, setSelectedSubServices] = useState({});
@@ -134,23 +134,27 @@ const CreateWorkerModal = ({ isOpen, onClose }) => {
 
         {/* Basic Info */}
         {Object.keys(formData).map((key) => (
-          <input
+          <div
             key={key}
-            type={
-              key.includes("password")
-                ? "password"
-                : key === "email"
-                ? "email"
-                : "text"
-            }
-            name={key}
-            placeholder={key
-              .replace(/([A-Z])/g, " $1")
-              .replace(/^./, (s) => s.toUpperCase())}
-            value={formData[key]}
-            onChange={handleChange}
-            className="border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
-          />
+            className={`${key === "email" ? "col-span-2" : "col-span-1"}`}
+          >
+            <input
+              type={
+                key.includes("password")
+                  ? "password"
+                  : key === "email"
+                  ? "email"
+                  : "text"
+              }
+              name={key}
+              placeholder={key
+                .replace(/([A-Z])/g, " $1")
+                .replace(/^./, (s) => s.toUpperCase())}
+              value={formData[key]}
+              onChange={handleChange}
+              className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
+            />
+          </div>
         ))}
 
         {/* Main Services */}
