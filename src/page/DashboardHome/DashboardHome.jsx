@@ -1,24 +1,37 @@
 import ServicePopularityChart from "../../component/Main/Dashboard/Barchart";
 import IncomeGraphChart from "../../component/Main/Dashboard/IncomeGraphChart";
 import UpcomingBooking from "../../component/Main/Dashboard/UpCommingBookings";
+
 const DashboardHome = () => {
   return (
-    <section>
-      <div className="px-3 pb-5">
-        <h1 className="text-2xl font-semibold py-3 px-3">Dashboard Overview</h1>
+    <section className="w-full">
+      <div className=" px-3 md:px-6 lg:px-8 pb-6">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold py-3">
+          Dashboard Overview
+        </h1>
 
-        <div className="w-full h-full md:h-[40vh]  flex flex-col gap-4 md:flex-row justify-between items-center my-10">
-          {/* Left Column: Chart */}
-          <div className="w-full lg:w-[50%]  rounded-lg p-1">
-            <IncomeGraphChart />
+        {/* Charts Row */}
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 my-6">
+          {/* Left: Income Graph */}
+          <div className="col-span-1 rounded-lg p-1 md:p-2">
+            {/* Give the chart a responsive, reliable height across breakpoints */}
+            <div className="h-64 sm:h-72 md:h-[38vh] lg:h-[42vh] xl:h-[46vh]">
+              <IncomeGraphChart />
+            </div>
           </div>
 
-          {/* Right Column: Pie Chart */}
-          <div className="w-full lg:w-[40%]">
-            <ServicePopularityChart />
+          {/* Right: Service Popularity (Pie/Bar) */}
+          <div className="col-span-1 rounded-lg p-1 md:p-2">
+            <div className="h-64 sm:h-72 md:h-[38vh] lg:h-[42vh] xl:h-[46vh]">
+              <ServicePopularityChart />
+            </div>
           </div>
         </div>
-        <UpcomingBooking />
+
+        {/* Upcoming Bookings */}
+        <div className="mt-4 md:mt-6">
+          <UpcomingBooking />
+        </div>
       </div>
     </section>
   );

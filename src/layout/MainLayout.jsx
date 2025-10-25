@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../component/Main/Sidebar/Sidebar";
-import Header from "../component/Main/Header/Header";
+// import Header from "../component/Main/Header/Header";
 import { useState } from "react";
 
 const MainLayout = () => {
@@ -14,10 +14,10 @@ const MainLayout = () => {
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       {/* Main Content */}
       <section className="w-full h-full md:ml-[250px] lg:ml-[250px] xl:ml-[320px]">
-        <div className="md:my-7 md:pt-0 pt-14 md:mx-24">
+        {/* <div className="md:my-7 md:pt-0 pt-14">
           <Header toggleSidebar={toggleSidebar} />
-        </div>
-        <div className="md:px-20 bg-gradient-to-tl from-[#ffecec] via-[#ffe1e7] to-[#ffd4db] min-h-screen">
+        </div> */}
+        <div className="pt-20 md:px-8 lg:px-10 bg-gradient-to-tl from-[#ffecec] via-[#ffe1e7] to-[#ffd4db] min-h-screen">
           <Outlet />
         </div>
       </section>

@@ -26,6 +26,10 @@ const Settings = () => {
     //   path: "personal-info",
     // },
     {
+      title: "About us",
+      path: "about-us",
+    },
+    {
       title: "Change password",
       path: "change-password",
     },
@@ -36,10 +40,6 @@ const Settings = () => {
     {
       title: "Terms & Conditions",
       path: "terms-conditions",
-    },
-    {
-      title: "About us",
-      path: "about-us",
     },
   ];
 

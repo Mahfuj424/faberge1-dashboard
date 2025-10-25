@@ -14,6 +14,7 @@ const data = [
   { name: "Fe", value: 320 },
   { name: "Ma", value: 540 },
   { name: "Ap", value: 180 },
+  { name: "My", value: 200 },
   { name: "Ju", value: 300 },
   { name: "Jl", value: 350 },
   { name: "Au", value: 470 },

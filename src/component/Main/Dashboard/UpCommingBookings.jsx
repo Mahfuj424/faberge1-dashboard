@@ -73,7 +73,7 @@ const UpcomingBooking = () => {
 
       {/* Responsive Scroll Container */}
       <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-pink-200 scrollbar-track-pink-50">
-        <div className="min-w-[900px] divide-y divide-pink-100">
+        <div className="w-full divide-y divide-pink-100">
           {bookings.map((booking) => (
             <div
               key={booking.id}

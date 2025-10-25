@@ -28,7 +28,7 @@ const UserTable = ({ data, type, onView, onDelete }) => {
               {type === "worker" ? (
                 <>
                   <th className="px-6 py-3 w-[200px]">Worker</th>
-                  <th className="px-6 py-3 w-[120px]">ID</th>
+                  <th className="px-6 py-3 w-[120px]">ID#</th>
                   <th className="px-6 py-3 w-[160px]">Location</th>
                   <th className="px-6 py-3 w-[240px]">Services</th>
                   <th className="px-6 py-3 w-[120px]">Status</th>
