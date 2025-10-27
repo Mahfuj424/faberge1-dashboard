@@ -1,4 +1,3 @@
-
 import {
   BarChart,
   Bar,
@@ -37,9 +36,12 @@ const ServicePopularityChart = () => {
             tickLine={false}
           />
           <YAxis
+            ticks={[0, 30, 60, 90, 120]}
+            domain={[0, 120]}
             tick={{ fill: "#666", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
+            tickFormatter={(val) => (val === 120 ? "Ꝏ" : val)}
           />
           <Tooltip cursor={{ fill: "#fde6ef" }} />
           <Bar dataKey="value" fill="#e91e63" radius={[4, 4, 0, 0]} />

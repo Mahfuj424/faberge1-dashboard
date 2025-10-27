@@ -11,13 +11,14 @@ const CreateWorkerModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    email: "",
     address: "",
-    zip: "",
     city: "",
     state: "",
-    phone: "",
+    zip: "",
+    title:"",
     workerId: "",
+    phone: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
@@ -136,7 +137,7 @@ const CreateWorkerModal = ({ isOpen, onClose }) => {
         {Object.keys(formData).map((key) => (
           <div
             key={key}
-            className={`${key === "email" ? "col-span-2" : "col-span-1"}`}
+            className={`col-span-1`}
           >
             <input
               type={

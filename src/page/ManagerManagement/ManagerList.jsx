@@ -1,10 +1,9 @@
 import React from "react";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, LockOutlined } from "@ant-design/icons";
 
-const ManagerList = ({ managers, onDelete }) => {
+const ManagerList = ({ managers, onDelete, onOpenAccess }) => {
   return (
     <div className="bg-white rounded-xl shadow-sm border border-pink-100 p-4">
-      {/* 🔍 Search Bar */}
       <div className="mb-4">
         <input
           type="text"
@@ -13,15 +12,15 @@ const ManagerList = ({ managers, onDelete }) => {
         />
       </div>
 
-      {/* ✅ Responsive Scrollable Table */}
       <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-pink-200 scrollbar-track-pink-50 rounded-lg">
-        <table className="min-w-[700px] w-full text-sm text-gray-700">
+        <table className="min-w-[800px] w-full text-sm text-gray-700">
           <thead className="bg-pink-50 uppercase text-xs">
             <tr>
               <th className="px-6 py-3 text-left">Manager</th>
               <th className="px-6 py-3 text-left">ID</th>
               <th className="px-6 py-3 text-left">Mail</th>
               <th className="px-6 py-3 text-left">Status</th>
+              <th className="px-6 py-3 text-center">Access</th>
               <th className="px-6 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -33,7 +32,6 @@ const ManagerList = ({ managers, onDelete }) => {
                   key={manager.id}
                   className="border-b border-pink-100 hover:bg-pink-50 transition-all"
                 >
-                  {/* Manager Info */}
                   <td className="px-6 py-3 flex items-center gap-3">
                     <img
                       src={manager.avatar}
@@ -45,15 +43,11 @@ const ManagerList = ({ managers, onDelete }) => {
                     </span>
                   </td>
 
-                  {/* ID */}
                   <td className="px-6 py-3">{manager.managerId}</td>
-
-                  {/* Email */}
                   <td className="px-6 py-3 truncate max-w-[180px]">
                     {manager.email}
                   </td>
 
-                  {/* Status */}
                   <td className="px-6 py-3">
                     <span
                       className={`text-xs px-3 py-1 rounded-full font-semibold ${
@@ -66,7 +60,14 @@ const ManagerList = ({ managers, onDelete }) => {
                     </span>
                   </td>
 
-                  {/* Delete Action */}
+                  {/* 🔐 Access Button */}
+                  <td className="px-6 py-3 text-center">
+                    <LockOutlined
+                      className="text-[#e91e63] text-lg cursor-pointer hover:text-[#c2185b]"
+                      onClick={() => onOpenAccess(manager)}
+                    />
+                  </td>
+
                   <td className="px-6 py-3 text-right">
                     <DeleteOutlined
                       className="text-red-500 cursor-pointer hover:text-red-600 text-lg"
@@ -78,7 +79,7 @@ const ManagerList = ({ managers, onDelete }) => {
             ) : (
               <tr>
                 <td
-                  colSpan="5"
+                  colSpan="6"
                   className="text-center py-6 text-gray-500 text-sm"
                 >
                   No managers found

@@ -27,6 +27,7 @@ import CreateManager from "../page/CreateManager/CreateManager";
 import ManagerManagement from "../page/ManagerManagement/ManagerManagement";
 import { HelpCircleIcon } from "lucide-react";
 import HelpSupport from "../page/Help&Support/HelpSupport";
+import LegalitiesPage from "../page/legalities/LegalitiesPage";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       {
         path: "Earnings",
         element: <EarningsPage />,
-      },   
+      },
       {
         path: "profile",
         element: <PersonalInformationPage />,
@@ -95,31 +96,36 @@ const router = createBrowserRouter([
         element: <HelpSupport />,
       },
       {
-        path: "settings",
+        path: "site-content",
         element: <SettingsPage />,
       },
       {
-        path: "settings/privacy-policy",
+        path: "legalities",
+        element: <LegalitiesPage />,
+      },
+      {
+        path: "legalities/privacy-policy",
         element: <PrivacyPolicyPage />,
       },
       {
-        path: "/settings/edit-privacy-policy/:id",
+        path: "/legalities/edit-privacy-policy/:id",
         element: <EditPrivacyPolicy />,
       },
       {
-        path: "settings/terms-conditions",
+        path: "legalities/terms-conditions",
         element: <TermsConditions />,
       },
       {
-        path: "/settings/edit-terms-conditions/:id",
+        path: "/legalities/edit-terms-conditions/:id",
         element: <EditTermsConditions />,
       },
       {
-        path: "settings/about-us",
+        path: "site-content/about-us",
         element: <AboutUsPage />,
-      },{
-        path: "/settings/edit-about-us/:id",
-        element: <EditAboutUs/>
+      },
+      {
+        path: "/site-content/edit-about-us/:id",
+        element: <EditAboutUs />,
       },
     ],
   },
@@ -132,7 +138,7 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: 'sign-in',
+        path: "sign-in",
         element: <SignIn />,
       },
       {

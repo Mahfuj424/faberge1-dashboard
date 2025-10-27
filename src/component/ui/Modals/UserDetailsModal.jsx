@@ -3,6 +3,7 @@ import { CloseOutlined } from "@ant-design/icons";
 
 const UserDetailsModal = ({ isOpen, user, type, onClose, onAction }) => {
   if (!isOpen) return null;
+  console.log(user)
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[9999] transition-all">
@@ -66,7 +67,7 @@ const UserDetailsModal = ({ isOpen, user, type, onClose, onAction }) => {
                 <span>{user?.phone}</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">User Type:</span>
+                <span className="font-medium text-gray-600">User Type</span>
                 <span>Customer</span>
               </div>
             </>
@@ -75,8 +76,12 @@ const UserDetailsModal = ({ isOpen, user, type, onClose, onAction }) => {
           {type === "worker" && (
             <>
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600">User Type:</span>
-                <span>Worker</span>
+                <span className="font-medium text-gray-600">ZipCode: </span>
+                <span>{user?.zipCode}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium text-gray-600">User Type / Title: </span>
+                <span>Worker / {user.title}</span>
               </div>
               <div>
                 <span className="block font-medium text-gray-600 mb-1">
@@ -88,7 +93,7 @@ const UserDetailsModal = ({ isOpen, user, type, onClose, onAction }) => {
                       key={index}
                       className="px-3 py-1 text-xs bg-pink-100 text-[#e91e63] rounded-full border border-pink-200"
                     >
-                      {skill}
+                      Padicure, Manicure
                     </span>
                   ))}
                 </div>

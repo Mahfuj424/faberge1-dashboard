@@ -9,7 +9,6 @@ import {
   CalendarOutlined,
   TransactionOutlined,
   UserAddOutlined,
-  TeamOutlined,
   QuestionCircleOutlined,
   LogoutOutlined,
   MenuOutlined,
@@ -20,32 +19,29 @@ import logo from "/public/logo/logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import ConfirmationModal from "../../ui/Modals/ConfirmationModal";
+import { SiTheconversation } from "react-icons/si";
 
 const menuItems = [
   { name: "Dashboard", path: "/", icon: <DashboardOutlined /> },
-  { name: "Profile", path: "/profile", icon: <UsergroupAddOutlined /> },
+  { name: "Analytics", path: "/analytics", icon: <LineChartOutlined /> },
+  { name: "Bookings", path: "/bookings", icon: <CalendarOutlined /> },
+  { name: "Transaction", path: "/transaction", icon: <TransactionOutlined /> },
+  { name: "Services", path: "/services", icon: <AppstoreOutlined /> },
+  { name: "Users", path: "/users", icon: <UsergroupAddOutlined /> },
+  {
+    name: "Managers",
+    path: "/manager-management",
+    icon: <UserAddOutlined />,
+  },
+  { name: "States", path: "/states", icon: <EnvironmentOutlined /> },
   {
     name: "Notifications",
     path: "/notification",
     icon: <IoNotificationsOutline />,
   },
-  { name: "Settings", path: "/settings", icon: <SettingOutlined /> },
-  { name: "Analytics", path: "/analytics", icon: <LineChartOutlined /> },
-  { name: "Users", path: "/users", icon: <UsergroupAddOutlined /> },
-  { name: "Services", path: "/services", icon: <AppstoreOutlined /> },
-  { name: "States", path: "/states", icon: <EnvironmentOutlined /> },
-  { name: "Bookings", path: "/bookings", icon: <CalendarOutlined /> },
-  { name: "Transaction", path: "/transaction", icon: <TransactionOutlined /> },
-  {
-    name: "Create Manager",
-    path: "/create-manager",
-    icon: <UserAddOutlined />,
-  },
-  {
-    name: "Manager Management",
-    path: "/manager-management",
-    icon: <TeamOutlined />,
-  },
+  { name: "Profile", path: "/profile", icon: <UsergroupAddOutlined /> },
+  { name: "Site Content", path: "/site-content", icon: <SettingOutlined /> },
+  { name: "Legalities", path: "/legalities", icon: <SiTheconversation /> },
   { name: "Help & Support", path: "/help", icon: <QuestionCircleOutlined /> },
 ];
 

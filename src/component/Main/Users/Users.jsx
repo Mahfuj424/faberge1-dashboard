@@ -10,13 +10,15 @@ import { allServices } from "../../../constants/service";
 const UserManagement = () => {
   const [activeTab, setActiveTab] = useState("worker");
 
-  // ✅ Default worker data (full structure)
+  // Workers (sample)
   const [workers, setWorkers] = useState([
     {
       id: 1,
       firstName: "Mahfuj",
       lastName: "Alam",
       address: "Dhaka, Mohakhali",
+      zipCode:"1200",
+      title:"Nail Tech",
       city: "Dhaka",
       state: "Bangladesh",
       email: "mahfujalam5795@gmail.com",
@@ -39,67 +41,95 @@ const UserManagement = () => {
     },
   ]);
 
-  const [customers, setCustomers] = useState([]);
+  // Customers (FLAT array)
+  const [customers, setCustomers] = useState([
+    {
+      id: 1,
+      name: "John S.",
+      location: "New York, NY",
+      email: "john.s@example.com",
+      phone: "+1 (212) 555-0101",
+      avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+      status: "active",
+    },
+    {
+      id: 2,
+      name: "Ayesha Rahman",
+      location: "Dhaka, BD",
+      email: "ayesha@example.com",
+      phone: "+880 1712-345678",
+      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+      status: "active",
+    },
+  ]);
+
   const [selectedUser, setSelectedUser] = useState(null);
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  // 🧠 Helper: convert selectedServices array → service string
-  const generateServiceString = (selectedServices = []) => {
-    return selectedServices
-      .map((srv) => {
-        if (srv.subServices && srv.subServices.length > 0) {
-          const subs = srv.subServices.map((s) => s.name).join(" + ");
-          return `${srv.name} (${subs})`;
-        } else {
-          return srv.name;
-        }
-      })
+  // services -> string for table
+  const generateServiceString = (selectedServices = []) =>
+    selectedServices
+      .map((srv) =>
+        srv?.subServices?.length
+          ? `${srv.name} (${srv.subServices.map((s) => s.name).join(" + ")})`
+          : srv.name
+      )
       .join(" + ");
-  };
 
-  // 🧩 Delete logic
-  const handleDeleteClick = (user) => {
-    setUserToDelete(user);
+  // Delete handlers (works for both tabs)
+  const handleDeleteClick = (row) => {
+    setUserToDelete({ ...row, __type: activeTab });
     setConfirmModalOpen(true);
   };
 
   const handleConfirmDelete = () => {
-    setWorkers((prev) => prev.filter((w) => w.id !== userToDelete.id));
+    if (!userToDelete) return;
+    if (userToDelete.__type === "worker") {
+      setWorkers((prev) => prev.filter((w) => w.id !== userToDelete.id));
+    } else {
+      setCustomers((prev) => prev.filter((c) => c.id !== userToDelete.id));
+    }
     setConfirmModalOpen(false);
     setUserToDelete(null);
   };
 
   const handleCancelDelete = () => setConfirmModalOpen(false);
 
-  // ➕ Create Modal open
   const handleAddNew = () => setIsCreateModalOpen(true);
 
-  // ✅ Save worker
   const handleSaveWorker = (workerData) => {
-    const newWorker = {
-      ...workerData,
-      id: Date.now(),
-      status: "active",
-    };
-
+    const newWorker = { ...workerData, id: Date.now(), status: "active" };
     setWorkers((prev) => [...prev, newWorker]);
     setIsCreateModalOpen(false);
   };
 
-  const filteredData =
+  // Normalize data for table by tab
+  const tableData =
     activeTab === "worker"
-      ? workers.map((worker) => ({
-          id: worker.id,
-          name: `${worker.firstName} ${worker.lastName}`,
-          workerId: worker.workerId || "N/A",
-          location: `${worker.city}, ${worker.state}`,
-          services: generateServiceString(worker.selectedServices),
-          status: worker.status || "active",
-          avatar: worker.image,
+      ? workers.map((w) => ({
+          id: w.id,
+          name: `${w.firstName} ${w.lastName}`,
+          workerId: w.workerId || "N/A",
+          location: `${w.city}, ${w.state}`,
+          services: generateServiceString(w.selectedServices),
+          status: w.status || "active",
+          zipCode: w.zipCode,
+          title: w.title,
+          email: w.email,
+          phone: w.phone,
+          avatar: w.image,
         }))
-      : customers;
+      : customers.map((c) => ({
+          id: c.id,
+          name: c.name,
+          location: c.location,
+          email: c.email,
+          phone: c.phone,
+          avatar: c.avatar,
+          status: c.status || "active",
+        }));
 
   return (
     <div className="p-6">
@@ -146,13 +176,13 @@ const UserManagement = () => {
 
       {/* Table */}
       <UserTable
-        data={filteredData}
+        data={tableData}
         type={activeTab}
         onView={setSelectedUser}
         onDelete={handleDeleteClick}
       />
 
-      {/* User Details Modal */}
+      {/* Details Modal */}
       <UserDetailsModal
         isOpen={!!selectedUser}
         user={selectedUser}
@@ -160,20 +190,30 @@ const UserManagement = () => {
         onClose={() => setSelectedUser(null)}
       />
 
-      {/* Delete Confirmation Modal */}
+      {/* Delete Confirmation */}
       <ConfirmationModal
         isOpen={confirmModalOpen}
-        title="Delete Worker"
-        message={`Are you sure you want to delete ${
-          userToDelete?.firstName || "this worker"
-        }?`}
+        title={
+          userToDelete?.__type === "worker"
+            ? "Delete Worker"
+            : "Delete Customer"
+        }
+        message={
+          userToDelete?.__type === "worker"
+            ? `Are you sure you want to delete ${
+                userToDelete?.name || "this worker"
+              }?`
+            : `Are you sure you want to delete ${
+                userToDelete?.name || "this customer"
+              }?`
+        }
         confirmText="Delete"
         cancelText="Cancel"
         onConfirm={handleConfirmDelete}
         onCancel={handleCancelDelete}
       />
 
-      {/* Create Worker Modal */}
+      {/* Create Worker */}
       <CreateWorkerModal
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}

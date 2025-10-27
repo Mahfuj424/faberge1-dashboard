@@ -22,7 +22,7 @@ const EditTermsConditions = () => {
       {/* Header Section */}
       <div className="flex justify-between items-center py-5">
         <div className="flex items-center">
-          <Link to="/settings/terms-conditions">
+          <Link to="/legalities/terms-conditions">
             <IoChevronBack className="text-2xl" />
           </Link>
           <h1 className="text-2xl font-semibold">Edit Terms and Conditions</h1>
@@ -30,7 +30,7 @@ const EditTermsConditions = () => {
       </div>
 
       {/* Form Section */}
-      <div className="w-full p-6 rounded-lg shadow-md">
+      <div className="w-full p-6 rounded-lg shadow-md bg-white">
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           {/* React Quill for Terms and Conditions Content */}
           <Form.Item name="content" initialValue={content}>
@@ -56,18 +56,18 @@ const EditTermsConditions = () => {
             />
           </Form.Item>
 
-           {/* Update Button */}
-         <div className="w-full flex justify-end mt-20 md:mt-16">
-         <Button
-          type="primary"
-          htmlType="submit"
-          icon={<i className="fas fa-sync-alt"></i>} // Example FontAwesome icon
-          className="mt-1 px-5 rounded-lg bg-gray-500 py-5  border-none"
-        >
-          Cancel 
-        </Button>
-         <CustomButton className="p-1" >Update</CustomButton>
-         </div>
+          {/* Update Button */}
+          <div className="w-full flex justify-end mt-20 md:mt-16">
+            <Button
+              type="primary"
+              htmlType="submit"
+              icon={<i className="fas fa-sync-alt"></i>} // Example FontAwesome icon
+              className="mt-1 px-5 rounded-lg bg-gray-500 py-5  border-none"
+            >
+              Cancel
+            </Button>
+            <CustomButton className="p-1">Update</CustomButton>
+          </div>
         </Form>
       </div>
     </section>

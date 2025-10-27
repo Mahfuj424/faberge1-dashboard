@@ -9,12 +9,12 @@ const PrivacyPolicyPage = () => {
     <section className="w-full h-full min-h-screen">
       <div className="flex justify-between items-center py-5">
         <div className="flex  items-center">
-          <Link to="/settings">
+          <Link to="/legalities">
             <IoChevronBack className="text-2xl" />
           </Link>
           <h1 className="text-2xl font-semibold">Privacy Policy</h1>
         </div>
-        <Link to={"/settings/edit-privacy-policy/11"}>
+        <Link to={"/legalities/edit-privacy-policy/11"}>
           <CustomButton border>
             <TbEdit className="size-5" />
             <span>Edit</span>

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ManagerList from "./ManagerList";
-import AccessibilityList from "./AccessibilityList";
 import ConfirmationModal from "../../component/ui/Modals/ConfirmationModal";
+import AccessModal from "../../component/ui/Modals/AccessModal";
+import CreateManagerModal from "../../component/ui/Modals/CreateManagerModal";
 
 const ManagerManagement = () => {
-  const [activeTab, setActiveTab] = useState("list");
   const [deleteId, setDeleteId] = useState(null);
+  const [selectedManager, setSelectedManager] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const [managers, setManagers] = useState([
     {
@@ -32,17 +34,17 @@ const ManagerManagement = () => {
       avatar: "https://randomuser.me/api/portraits/women/45.jpg",
       status: "active",
       access: {
-        dashboard: true,
-        analytics: false,
+        dashboard: false,
+        analytics: true,
         users: false,
         services: false,
-        bookings: false,
+        bookings: true,
         transaction: false,
       },
     },
   ]);
 
-  // 🗑️ Delete handlers
+  // 🗑️ Delete Manager
   const handleDelete = (id) => setDeleteId(id);
   const confirmDelete = () => {
     setManagers(managers.filter((m) => m.id !== deleteId));
@@ -50,63 +52,74 @@ const ManagerManagement = () => {
   };
   const cancelDelete = () => setDeleteId(null);
 
-  // ⚙️ Toggle Access for all managers
-  const handleToggleAccess = (moduleName, value) => {
-    const updatedManagers = managers.map((m) => ({
-      ...m,
-      access: { ...m.access, [moduleName]: value },
-    }));
+  // 🔐 Access Modal
+  const handleOpenAccess = (manager) => setSelectedManager(manager);
+  const handleCloseAccess = () => setSelectedManager(null);
+
+  // ⚙️ Toggle access
+  const handleToggleAccess = (managerId, moduleName, value) => {
+    const updatedManagers = managers.map((m) =>
+      m.id === managerId
+        ? { ...m, access: { ...m.access, [moduleName]: value } }
+        : m
+    );
     setManagers(updatedManagers);
 
-    // 🔹 Collect affected manager IDs
-    const affectedManagerIds = updatedManagers.map((m) => m.id);
+    if (selectedManager?.id === managerId) {
+      setSelectedManager(
+        updatedManagers.find((m) => m.id === selectedManager.id)
+      );
+    }
+  };
 
-    console.log(`✅ Access "${moduleName}" changed to: ${value}`);
-    console.log("👥 Manager IDs affected:", affectedManagerIds);
+  // ➕ Add new manager
+  const handleAddManager = (newManagerData) => {
+    const newManager = {
+      id: managers.length + 1,
+      name: newManagerData.name,
+      email: newManagerData.email,
+      managerId: newManagerData.managerId,
+      avatar:
+        newManagerData.profileImage instanceof File
+          ? URL.createObjectURL(newManagerData.profileImage)
+          : "https://randomuser.me/api/portraits/men/50.jpg",
+      status: "active",
+      access: {
+        dashboard: false,
+        analytics: false,
+        users: false,
+        services: false,
+        bookings: false,
+        transaction: false,
+      },
+    };
+
+    setManagers([...managers, newManager]);
+    setShowCreateModal(false);
   };
 
   return (
     <div className="p-6 min-h-screen">
-      <h1 className="text-xl font-semibold text-gray-800 mb-4">
-        Manager Management
-      </h1>
-
-      {/* Tabs */}
-      <div className="flex gap-2 mb-6">
-        <button
-          onClick={() => setActiveTab("list")}
-          className={`px-4 py-2 rounded-t-md font-medium ${
-            activeTab === "list"
-              ? "bg-white text-[#e91e63] border-b-2 border-[#e91e63]"
-              : "text-gray-500 bg-pink-100 hover:text-[#e91e63]"
-          }`}
-        >
-          Manager List
-        </button>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-xl font-semibold text-gray-800">
+          Manager Management
+        </h1>
 
         <button
-          onClick={() => setActiveTab("access")}
-          className={`px-4 py-2 rounded-t-md font-medium ${
-            activeTab === "access"
-              ? "bg-white text-[#e91e63] border-b-2 border-[#e91e63]"
-              : "text-gray-500 bg-pink-100 hover:text-[#e91e63]"
-          }`}
+          onClick={() => setShowCreateModal(true)}
+          className="bg-[#e91e63] text-white px-4 py-2 rounded-md shadow hover:bg-[#d81b60] transition-all"
         >
-          Accessibility
+          + Add New
         </button>
       </div>
 
-      {/* Content */}
-      {activeTab === "list" ? (
-        <ManagerList managers={managers} onDelete={handleDelete} />
-      ) : (
-        <AccessibilityList
-          managers={managers}
-          onToggleAccess={handleToggleAccess}
-        />
-      )}
+      <ManagerList
+        managers={managers}
+        onDelete={handleDelete}
+        onOpenAccess={handleOpenAccess}
+      />
 
-      {/* 🗑️ Delete Confirmation Modal */}
+      {/* 🗑️ Delete Confirmation */}
       <ConfirmationModal
         isOpen={!!deleteId}
         title="Delete Manager"
@@ -116,6 +129,25 @@ const ManagerManagement = () => {
         onConfirm={confirmDelete}
         onCancel={cancelDelete}
       />
+
+      {/* 🔐 Access Modal */}
+      {selectedManager && (
+        <AccessModal
+          isOpen={!!selectedManager}
+          manager={selectedManager}
+          onClose={handleCloseAccess}
+          onToggleAccess={handleToggleAccess}
+        />
+      )}
+
+      {/* ➕ Create Manager Modal */}
+      {showCreateModal && (
+        <CreateManagerModal
+          isOpen={showCreateModal}
+          onClose={() => setShowCreateModal(false)}
+          onSubmit={handleAddManager}
+        />
+      )}
     </div>
   );
 };

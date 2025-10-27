@@ -22,7 +22,7 @@ const EditAboutUs = () => {
       {/* Header Section */}
       <div className="flex justify-between items-center py-5">
         <div className="flex items-center">
-          <Link to="/settings/about-us">
+          <Link to="/site-content/about-us">
             <IoChevronBack className="text-2xl" />
           </Link>
           <h1 className="text-2xl font-semibold">Edit About Us</h1>

@@ -14,6 +14,7 @@ import {
   Area,
 } from "recharts";
 import { Tabs, Select, Space } from "antd";
+import { RiInfinityLine } from "react-icons/ri";
 
 const months = [
   "Jan",
@@ -247,9 +248,12 @@ const Analytics = () => {
                 tickLine={false}
               />
               <YAxis
+                ticks={[0, 150, 300, 450, 600]}
+                domain={[0, 600]}
                 tick={{ fill: "#666", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
+                tickFormatter={(val) => (val === 600 ? "Ꝏ" : val)}
               />
               <Tooltip
                 cursor={{ stroke: "#e91e63", strokeWidth: 1 }}
