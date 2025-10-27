@@ -60,7 +60,7 @@ const ServicePage = () => {
             <tr>
               <th className="px-6 py-3">Service Name</th>
               <th className="px-6 py-3">Price ($)</th>
-              <th className="px-6 py-3">Add Ones ($)</th>
+              <th className="px-6 py-3">Add-Ons</th>
               <th className="px-6 py-3 text-right">Actions</th>
             </tr>
           </thead>
