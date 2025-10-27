@@ -134,29 +134,34 @@ const CreateWorkerModal = ({ isOpen, onClose }) => {
         </div>
 
         {/* Basic Info */}
-        {Object.keys(formData).map((key) => (
-          <div
-            key={key}
-            className={`col-span-1`}
-          >
-            <input
-              type={
-                key.includes("password")
-                  ? "password"
-                  : key === "email"
-                  ? "email"
-                  : "text"
-              }
-              name={key}
-              placeholder={key
-                .replace(/([A-Z])/g, " $1")
-                .replace(/^./, (s) => s.toUpperCase())}
-              value={formData[key]}
-              onChange={handleChange}
-              className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
-            />
-          </div>
-        ))}
+        {Object.keys(formData).map((key) => {
+          // ✅ Custom placeholder labels
+          let placeholder = key
+            .replace(/([A-Z])/g, " $1")
+            .replace(/^./, (s) => s.toUpperCase());
+
+          if (key === "workerId") placeholder = "Worker ID#";
+          if (key === "zip") placeholder = "Zip Code";
+
+          return (
+            <div key={key} className="col-span-1">
+              <input
+                type={
+                  key.includes("password")
+                    ? "password"
+                    : key === "email"
+                    ? "email"
+                    : "text"
+                }
+                name={key}
+                placeholder={placeholder}
+                value={formData[key]}
+                onChange={handleChange}
+                className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
+              />
+            </div>
+          );
+        })}
 
         {/* Main Services */}
         <div className="col-span-2 mt-3">

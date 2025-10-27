@@ -9,9 +9,9 @@ const CreateManager = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     name: "",
     address: "",
-    zip: "",
     city: "",
     state: "",
+    zip: "",
     email: "",
     managerId: "",
     newPassword: "",
@@ -85,24 +85,6 @@ const CreateManager = ({ onSubmit }) => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Zip Code
-            </label>
-            <input
-              type="text"
-              name="zip"
-              value={formData.zip}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
-              placeholder="Enter zip code"
-              required
-            />
-          </div>
-        </div>
-
-        {/* City & State */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
               City
             </label>
             <input
@@ -115,6 +97,10 @@ const CreateManager = ({ onSubmit }) => {
               required
             />
           </div>
+        </div>
+
+        {/* City & State */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               State
@@ -126,6 +112,20 @@ const CreateManager = ({ onSubmit }) => {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
               placeholder="State"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Zip Code
+            </label>
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-[#e91e63]"
+              placeholder="Zip Code"
               required
             />
           </div>
@@ -150,7 +150,7 @@ const CreateManager = ({ onSubmit }) => {
         {/* Manager ID */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Create ID
+            Create ID#
           </label>
           <input
             type="text"

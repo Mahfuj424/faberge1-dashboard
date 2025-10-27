@@ -6,54 +6,65 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
     id: "",
     name: "",
     price: "",
-    gel: "",
-    water: "",
+    subServices: [],
   });
 
+  // 🔹 When service data comes in, load it into form
   useEffect(() => {
     if (service) {
-      // ✅ সাব-সার্ভিস থেকে Gel এবং Water এর দাম বের করছি
-      const gelSub = service.subServices?.find((s) => s.name === "Gel");
-      const waterSub = service.subServices?.find((s) => s.name === "Water");
-
       setFormData({
         id: service.id || "",
         name: service.name || "",
         price: service.price || "",
-        gel: gelSub?.price || "",
-        water: waterSub?.price || "",
+        subServices: service.subServices ? [...service.subServices] : [],
       });
     }
   }, [service]);
 
-  // ✅ ইনপুট পরিবর্তন হ্যান্ডেল
-  const handleChange = (e) => {
+  // 🔹 Handle main service input
+  const handleMainChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ ফর্ম সাবমিট
+  // 🔹 Handle sub-service input
+  const handleSubChange = (index, e) => {
+    const { name, value } = e.target;
+    const updated = [...formData.subServices];
+    updated[index][name] = value;
+    setFormData((prev) => ({ ...prev, subServices: updated }));
+  };
+
+  // 🔹 Add a new sub-service
+  const handleAddSub = () => {
+    setFormData((prev) => ({
+      ...prev,
+      subServices: [...prev.subServices, { name: "", price: "" }],
+    }));
+  };
+
+  // 🔹 Remove sub-service
+  const handleRemoveSub = (index) => {
+    const updated = [...formData.subServices];
+    updated.splice(index, 1);
+    setFormData((prev) => ({ ...prev, subServices: updated }));
+  };
+
+  // 🔹 Save updated data
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // clean data বানাচ্ছি
     const updatedData = {
       id: formData.id,
       name: formData.name.trim(),
       price: Number(formData.price),
-      subServices: [],
+      subServices: formData.subServices.filter(
+        (sub) => sub.name.trim() !== "" && sub.price !== ""
+      ),
     };
 
-    // যদি Manicure বা Pedicure হয়, তাহলে subServices যোগ হবে
-    if (formData.name === "Manicure" || formData.name === "Pedicure") {
-      updatedData.subServices.push(
-        { name: "Gel", price: Number(formData.gel) || 0 },
-        { name: "Water", price: Number(formData.water) || 0 }
-      );
-    }
-
-    console.log("🛠 Final Updated Service:", updatedData);
     onSave(updatedData);
+    onClose();
   };
 
   return (
@@ -62,16 +73,16 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
       onCancel={onClose}
       footer={null}
       centered
-      width={600}
+      width={700}
       className="update-service-modal"
     >
-      <h2 className="text-lg font-semibold mb-4">
-        Update {service?.name || "Service"}
+      <h2 className="text-lg font-semibold mb-4 text-[#e91e63]">
+        Update Service
       </h2>
       <hr className="border-gray-300 mb-5" />
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* 🔹 Service Name Field */}
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* 🔹 Main Service Fields */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Service Name
@@ -79,15 +90,14 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
           <input
             type="text"
             name="name"
-            placeholder="Enter service name"
             value={formData.name}
-            onChange={handleChange}
+            onChange={handleMainChange}
+            placeholder="Enter Service Name"
             className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
             required
           />
         </div>
 
-        {/* 🔹 Price Field */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Price ($)
@@ -95,48 +105,70 @@ const UpdateServiceModal = ({ isOpen, service, onClose, onSave }) => {
           <input
             type="number"
             name="price"
-            placeholder="Enter price"
             value={formData.price}
-            onChange={handleChange}
+            onChange={handleMainChange}
+            placeholder="Enter Price"
             className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
             required
           />
         </div>
 
-        {/* 🔹 Conditional Fields for Manicure/Pedicure */}
-        {(formData.name === "Manicure" || formData.name === "Pedicure") && (
-          <>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Gel Price ($)
-              </label>
-              <input
-                type="number"
-                name="gel"
-                placeholder="Enter gel price"
-                value={formData.gel}
-                onChange={handleChange}
-                className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
-              />
-            </div>
+        {/* 🔹 Sub-Services (If Exist) */}
+        <div className="bg-pink-50 border border-pink-100 rounded-md p-4">
+          <div className="flex justify-between items-center mb-3">
+            <h4 className="font-medium text-gray-700">Add Ones (Optional)</h4>
+            <button
+              type="button"
+              onClick={handleAddSub}
+              className="border border-[#e91e63] text-[#e91e63] bg-white py-1 px-3 rounded-md hover:bg-pink-50 transition-all text-sm font-medium"
+            >
+              + Add Ones
+            </button>
+          </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Water Price ($)
-              </label>
-              <input
-                type="number"
-                name="water"
-                placeholder="Enter water price"
-                value={formData.water}
-                onChange={handleChange}
-                className="w-full border border-pink-100 rounded-md px-3 py-2 focus:border-[#e91e63] focus:outline-none"
-              />
-            </div>
-          </>
-        )}
+          {formData.subServices.length === 0 && (
+            <p className="text-sm text-gray-400 italic">
+              No sub-service added yet.
+            </p>
+          )}
 
-        {/* 🔹 Buttons */}
+          {formData.subServices.map((sub, i) => (
+            <div
+              key={i}
+              className="grid grid-cols-2 gap-4 mb-3 relative bg-white border border-pink-100 rounded-md p-3"
+            >
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  value={sub.name}
+                  onChange={(e) => handleSubChange(i, e)}
+                  className="border border-pink-100 rounded-md px-3 py-2 w-full focus:border-[#e91e63] focus:outline-none"
+                  placeholder="Sub-service Name"
+                />
+              </div>
+              <div>
+                <input
+                  type="number"
+                  name="price"
+                  value={sub.price}
+                  onChange={(e) => handleSubChange(i, e)}
+                  className="border border-pink-100 rounded-md px-3 py-2 w-full focus:border-[#e91e63] focus:outline-none"
+                  placeholder="Price ($)"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => handleRemoveSub(i)}
+                className="absolute -right-2 top-2 text-red-500 hover:text-red-600"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* 🔹 Action Buttons */}
         <div className="flex justify-center gap-4 mt-6">
           <button
             type="submit"

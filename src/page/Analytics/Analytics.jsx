@@ -65,7 +65,7 @@ function getServiceData(selectedMonth, selectedYear) {
   const idx = monthIndex(selectedMonth);
   const seed = (selectedYear % 97) * 31 + idx * 17;
 
-  const candidates = ["Manicure", "Pedicure", "Gel", "Nail Art", "Other"];
+  const candidates = ["Manicure", "Pedicure", "Gel", "Padicure", "Other"];
   const count = 2 + seeded(seed, 2); // 2 or 3 services
 
   const offset = seeded(seed, candidates.length);
@@ -172,7 +172,14 @@ const Analytics = () => {
                     interval={0}
                     tickMargin={10}
                   />
-                  <YAxis stroke="#555" />
+                  <YAxis
+                    ticks={[0, 150, 300, 450, 600]}
+                    domain={[0, 600]}
+                    tick={{ fill: "#666", fontSize: 12 }}
+                    axisLine={false}
+                    tickLine={false}
+                    tickFormatter={(val) => (val === 600 ? "Ꝏ" : val)}
+                  />
                   <Tooltip />
                   <Bar
                     dataKey="value"
@@ -205,7 +212,14 @@ const Analytics = () => {
               height={60}
               tickMargin={10}
             />
-            <YAxis stroke="#555" />
+            <YAxis
+              ticks={[0, 150, 300, 450, 600]}
+              domain={[0, 600]}
+              tick={{ fill: "#666", fontSize: 12 }}
+              axisLine={false}
+              tickLine={false}
+              tickFormatter={(val) => (val === 600 ? "Ꝏ" : val)}
+            />
             <Tooltip />
             <Bar dataKey="value" fill="#e91e63" radius={[6, 6, 0, 0]} />
           </BarChart>

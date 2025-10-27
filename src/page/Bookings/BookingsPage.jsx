@@ -134,8 +134,8 @@ const BookingsPage = () => {
                       <span
                         className={`text-xs px-3 py-1 rounded-full font-medium ${
                           booking.status === "Completed"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-pink-100 text-[#e91e63]"
+                            ? "bg-red-500 text-green-100"
+                            : "bg-green-500 text-red-100"
                         }`}
                       >
                         {booking.status}

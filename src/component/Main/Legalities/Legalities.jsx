@@ -22,12 +22,12 @@ const Legalities = () => {
   };
   const settingsItem = [
     {
-      title: "Privacy Policy",
-      path: "privacy-policy",
-    },
-    {
       title: "Terms & Conditions",
       path: "terms-conditions",
+    },
+    {
+      title: "Privacy Policy",
+      path: "privacy-policy",
     },
   ];
 

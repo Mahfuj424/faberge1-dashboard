@@ -63,7 +63,7 @@ const ProfileForm = () => {
         </div>
       </div>
 
-      <div className="lg:w-2/6 mx-auto">
+      <div className="w-[400px] mx-auto">
         {/* Profile Header */}
         <div className="bg-white shadow-sm rounded-xl p-8 flex flex-col items-center mb-8 relative">
           <div className="relative">

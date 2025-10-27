@@ -9,7 +9,7 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "Basic Pedicure", value: 120 },
+  { name: "Pedicure", value: 120 },
   { name: "Manicure", value: 95 },
   { name: "Water Gel", value: 85 },
   { name: "Facial", value: 75 },
