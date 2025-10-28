@@ -136,7 +136,7 @@ const Settings = () => {
           {setting.path === "home-banner" && bannerOpen && (
             <div className="bg-white p-6 border border-pink-100 rounded-lg mb-4 shadow-sm">
               <p className="text-gray-600 mb-3">
-                Upload a Home Banner Image or Video
+                Upload Image or Video
               </p>
               <div
                 onClick={handleFileClick}

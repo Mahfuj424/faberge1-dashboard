@@ -65,7 +65,7 @@ function getServiceData(selectedMonth, selectedYear) {
   const idx = monthIndex(selectedMonth);
   const seed = (selectedYear % 97) * 31 + idx * 17;
 
-  const candidates = ["Manicure", "Pedicure", "Gel", "Padicure", "Other"];
+  const candidates = ["Manicure", "Pedicure", "Gel", "Pedicure", "Other"];
   const count = 2 + seeded(seed, 2); // 2 or 3 services
 
   const offset = seeded(seed, candidates.length);

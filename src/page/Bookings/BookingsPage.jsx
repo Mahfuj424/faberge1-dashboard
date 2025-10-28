@@ -66,7 +66,7 @@ const BookingsPage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-semibold text-gray-800 mb-4">Bookings</h1>
+      <h1 className="text-xl font-semibold text-gray-800 mb-4">All Bookings</h1>
 
       <div className="bg-white rounded-xl shadow-sm border border-pink-100 mt-4">
         {/* 🔍 Search Bar */}

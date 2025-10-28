@@ -70,7 +70,7 @@ const Notifications = () => {
       {/* Notifications Table */}
       <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-pink-200 scrollbar-track-pink-50">
         <table className="min-w-[900px] w-full text-sm text-gray-700">
-          <thead className="bg-pink-50 text-gray-700 uppercase text-lg font-bold">
+          <thead className="bg-pink-50 text-gray-700 uppercase text-sm font-bold">
             <tr>
               <th className="px-6 py-3 text-left">Type</th>
               <th className="px-6 py-3 text-left">Recipient</th>
@@ -84,14 +84,14 @@ const Notifications = () => {
             {mockNotifications.map((item) => (
               <tr
                 key={item.id}
-                className="border-b border-gray-400 hover:bg-pink-50 transition-all text-xl"
+                className="border-b border-gray-400 hover:bg-pink-50 transition-all text-sm"
               >
                 <td className="px-6 py-3">{item.type}</td>
                 <td className="px-6 py-3">{item.recipient}</td>
                 <td className="px-6 py-3">{item.subject}</td>
                 <td className="px-6 py-3">
                   <span
-                    className={`text-lg font-semibold ${
+                    className={`text-sm ${
                       item.status === "Delivered"
                         ? "text-green-600"
                         : "text-gray-500"

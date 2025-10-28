@@ -37,7 +37,7 @@ const TransactionsPage = () => {
   return (
     <div className="p-6">
       <h1 className="text-xl font-semibold text-gray-800 mb-4">
-        Transaction
+        Transactions
       </h1>
 
       <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-pink-100">

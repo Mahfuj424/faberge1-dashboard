@@ -40,11 +40,8 @@ const ServicePage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-semibold text-gray-800 mb-4">
-        Services
-      </h1>
-
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-between mb-4">
+        <h1 className="text-xl font-semibold text-gray-800 mb-4">Services</h1>
         <button
           onClick={() => setShowAddModal(true)}
           className="bg-[#e91e63] text-white py-2 px-5 rounded-md shadow hover:bg-pink-600 transition-all"

@@ -25,7 +25,7 @@ const menuItems = [
   { name: "Dashboard", path: "/", icon: <DashboardOutlined /> },
   { name: "Analytics", path: "/analytics", icon: <LineChartOutlined /> },
   { name: "Bookings", path: "/bookings", icon: <CalendarOutlined /> },
-  { name: "Transaction", path: "/transaction", icon: <TransactionOutlined /> },
+  { name: "Transactions", path: "/transaction", icon: <TransactionOutlined /> },
   { name: "Services", path: "/services", icon: <AppstoreOutlined /> },
   { name: "Users", path: "/users", icon: <UsergroupAddOutlined /> },
   {
