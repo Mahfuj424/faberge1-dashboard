@@ -102,7 +102,7 @@ const AddServiceModal = ({ isOpen, onClose, onAddService }) => {
         {/* 🔹 Add Ones Section */}
         <div className="bg-pink-50 border border-pink-100 rounded-md p-4">
           <div className="flex justify-between items-center mb-3">
-            <h4 className="font-medium text-gray-700">Add Ones (Optional)</h4>
+            <h4 className="font-medium text-gray-700">Add-Ons (Optional)</h4>
 
             <button
               type="button"
@@ -114,7 +114,7 @@ const AddServiceModal = ({ isOpen, onClose, onAddService }) => {
                   : "hover:bg-pink-50"
               }`}
             >
-              + Add Ones
+              + Add-Ons
             </button>
           </div>
 
@@ -163,7 +163,7 @@ const AddServiceModal = ({ isOpen, onClose, onAddService }) => {
           {/* Limit Message */}
           {service.subServices.length >= 4 && (
             <p className="text-xs text-gray-500 italic text-center mt-2">
-              You can add a maximum of 4 Add Ones per service.
+              You can add a maximum of 4 Add-Ons per service.
             </p>
           )}
         </div>

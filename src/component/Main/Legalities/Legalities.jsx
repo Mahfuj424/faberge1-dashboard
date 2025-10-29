@@ -62,6 +62,7 @@ const Legalities = () => {
   };
   return (
     <section className="w-full py-6">
+      <h1 className="text-xl font-semibold text-gray-800 py-4 ms-4">Legalities</h1>
       {settingsItem.map((setting, index) => (
         <div
           key={index}
@@ -179,7 +180,10 @@ const Legalities = () => {
               className="space-y-7 fit-content object-contain"
             >
               <div className="">
-                <h1 className="pb-3 text-xl">Enter the email address associated with your account. We'll send you an verification code to your email. </h1>
+                <h1 className="pb-3 text-xl">
+                  Enter the email address associated with your account. We'll
+                  send you an verification code to your email.{" "}
+                </h1>
                 <Form.Item
                   name="email"
                   rules={[
@@ -193,7 +197,9 @@ const Legalities = () => {
                 </Form.Item>
               </div>
               <Form.Item>
-                <CustomButton className="w-full">Send verification code</CustomButton>
+                <CustomButton className="w-full">
+                  Send verification code
+                </CustomButton>
               </Form.Item>
             </Form>
           </div>
@@ -202,7 +208,8 @@ const Legalities = () => {
           <div className="px-[60px] pb-[60px] bg-primary">
             <form onSubmit={handleVerifyOtp}>
               <p className="text-[16px] mb-[14px]">
-                We'll send a verification code to your email. Check your inbox and enter the code here..
+                We'll send a verification code to your email. Check your inbox
+                and enter the code here..
               </p>
               <div className="">
                 <OTPInput

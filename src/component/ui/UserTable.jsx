@@ -28,6 +28,7 @@ const UserTable = ({ data, type, onView, onDelete }) => {
               {type === "worker" ? (
                 <>
                   <th className="px-6 py-3 w-[200px]">Worker</th>
+                  <th className="px-6 py-3 w-[200px]">Title</th>
                   <th className="px-6 py-3 w-[120px]">ID#</th>
                   <th className="px-6 py-3 w-[160px]">Location</th>
                   <th className="px-6 py-3 w-[240px]">Services</th>
@@ -71,6 +72,7 @@ const UserTable = ({ data, type, onView, onDelete }) => {
                   {/* Worker Columns */}
                   {type === "worker" ? (
                     <>
+                      <td className="px-6 py-3 w-[120px]">Nail Tech</td>
                       <td className="px-6 py-3 w-[120px]">{user.workerId}</td>
                       <td className="px-6 py-3 w-[160px]">{user.location}</td>
                       <td className="px-6 py-3 w-[240px]">{user.services}</td>

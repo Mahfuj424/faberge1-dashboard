@@ -301,7 +301,7 @@ const Analytics = () => {
 
   return (
     <div className="p-4 md:p-6 min-h-screen">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-4">Analytics</h1>
+      <h1 className="text-xl font-semibold text-gray-800 mb-4">Analytics</h1>
 
       <div className="bg-white rounded-lg p-3 md:p-4 shadow-sm">
         <Tabs

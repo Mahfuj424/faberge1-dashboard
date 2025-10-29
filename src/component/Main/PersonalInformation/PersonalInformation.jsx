@@ -55,11 +55,11 @@ const ProfileForm = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center">
-        <div className="flex  items-center my-6">
+        <div className="flex  items-center">
           <Link to="/">
             <IoChevronBack className="text-2xl" />
           </Link>
-          <h1 className="text-2xl font-semibold">Profile</h1>
+          <h1 className="text-xl font-semibold">Profile</h1>
         </div>
       </div>
 

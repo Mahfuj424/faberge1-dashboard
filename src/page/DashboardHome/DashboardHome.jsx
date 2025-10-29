@@ -5,8 +5,8 @@ import UpcomingBooking from "../../component/Main/Dashboard/UpCommingBookings";
 const DashboardHome = () => {
   return (
     <section className="w-full">
-      <div className=" px-3 md:px-6 lg:px-8 pb-6">
-        <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold py-3">
+      <div className=" px-3   pb-6">
+        <h1 className="text-xl font-semibold text-gray-800 pt-5">
           Dashboard Overview
         </h1>
 

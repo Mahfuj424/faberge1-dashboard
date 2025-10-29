@@ -106,6 +106,9 @@ const Settings = () => {
 
   return (
     <section className="w-full py-6">
+      <h1 className="text-xl font-semibold text-gray-800 py-4 ms-4">
+        Site Content
+      </h1>
       {settingsItem.map((setting, index) => (
         <div key={index} className="w-full">
           {/* Setting Row */}
@@ -135,9 +138,7 @@ const Settings = () => {
           {/* 🖼️ Home Banner Upload Section */}
           {setting.path === "home-banner" && bannerOpen && (
             <div className="bg-white p-6 border border-pink-100 rounded-lg mb-4 shadow-sm">
-              <p className="text-gray-600 mb-3">
-                Upload Image or Video
-              </p>
+              <p className="text-gray-600 mb-3">Upload Image or Video</p>
               <div
                 onClick={handleFileClick}
                 className="border-2 border-dashed border-pink-200 rounded-lg h-48 flex flex-col items-center justify-center cursor-pointer hover:bg-pink-50 transition-all"
