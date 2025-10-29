@@ -102,7 +102,7 @@ const ServicePage = () => {
         </table>
       </div>
       <div className="mt-6">
-        <h1 className="text-xl font-semibold ">Service Hours</h1>
+        <h1 className="text-xl font-semibold text-gray-800">Service Hours</h1>
         <div className="flex items-center gap-2 mt-3">
           <Tooltip title="Service opening time">
             <div className="border-2 shadow border-pink-600 rounded-md px-4 py-2 bg-white">
