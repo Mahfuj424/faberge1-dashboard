@@ -23,9 +23,9 @@ const AccessModal = ({ isOpen, manager, onClose, onToggleAccess }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
         <h2 className="text-lg font-semibold text-[#e91e63] mb-4">
-          Manage Access for {localManager.name}
+          Manager Access
         </h2>
 
         <AccessibilityList
