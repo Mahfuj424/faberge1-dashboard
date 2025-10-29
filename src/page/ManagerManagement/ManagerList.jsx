@@ -17,7 +17,7 @@ const ManagerList = ({ managers, onDelete, onOpenAccess }) => {
           <thead className="bg-pink-50 uppercase text-xs">
             <tr>
               <th className="px-6 py-3 text-left">Manager</th>
-              <th className="px-6 py-3 text-left">ID</th>
+              <th className="px-6 py-3 text-left">ID#</th>
               <th className="px-6 py-3 text-left">Mail</th>
               <th className="px-6 py-3 text-left">Status</th>
               <th className="px-6 py-3 text-center">Access</th>

@@ -4,6 +4,7 @@ import UpdateServiceModal from "../../component/ui/Modals/UpdateServiceModal";
 import ConfirmationModal from "../../component/ui/Modals/ConfirmationModal";
 import AddServiceModal from "../../component/ui/Modals/AddServiceModal";
 import { allServices } from "../../constants/service";
+import { Button, Tooltip } from "antd";
 
 const ServicePage = () => {
   const [services, setServices] = useState(allServices);
@@ -99,6 +100,21 @@ const ServicePage = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="mt-6">
+        <h1 className="text-xl font-semibold ">Service Hours</h1>
+        <div className="flex items-center gap-2 mt-3">
+          <Tooltip title="Service opening time">
+            <div className="border-2 shadow border-pink-600 rounded-md px-4 py-2 bg-white">
+              Open 🕔 09:00 AM
+            </div>
+          </Tooltip>
+          <Tooltip title="Service closing time">
+            <div className="border-2 shadow border-pink-600 rounded-md px-4 py-2 bg-white">
+              Close 🕔 07:00 PM
+            </div>
+          </Tooltip>
+        </div>
       </div>
 
       <ConfirmationModal

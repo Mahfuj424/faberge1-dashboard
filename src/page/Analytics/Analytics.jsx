@@ -157,13 +157,14 @@ const Analytics = () => {
       children: (
         <div className="bg-white shadow-sm rounded-xl p-4 md:p-6 w-full mt-3">
           <div className="overflow-x-auto" style={{ width: "100%" }}>
-            <div style={{ width: `${chartWidth}px`, minWidth: "280px" }}>
+            <div style={{ minWidth: "280px" }}>
               <ResponsiveContainer width="100%" height={380}>
                 <BarChart
                   data={serviceData}
                   margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
                   barCategoryGap="15%"
                   barGap={10}
+                  barSize={35}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#f3d2db" />
                   <XAxis
@@ -221,7 +222,12 @@ const Analytics = () => {
               tickFormatter={(val) => (val === 600 ? "Ꝏ" : val)}
             />
             <Tooltip />
-            <Bar dataKey="value" fill="#e91e63" radius={[6, 6, 0, 0]} />
+            <Bar
+              dataKey="value"
+              fill="#e91e63"
+              radius={[6, 6, 0, 0]}
+              barSize={35}
+            />
           </BarChart>
         </ChartWrapper>
       ),
