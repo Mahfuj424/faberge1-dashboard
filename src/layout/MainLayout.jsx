@@ -10,14 +10,14 @@ const MainLayout = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <main className="w-full flex bg-gray-50 min-h-screen">
+    <main className="w-full flex bg-gray-50 min-h-screen overflow-hidden">
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       {/* Main Content */}
       <section className="w-full h-full md:ml-[250px] lg:ml-[250px] xl:ml-[320px]">
         {/* <div className="md:my-7 md:pt-0 pt-14">
           <Header toggleSidebar={toggleSidebar} />
         </div> */}
-        <div className="pt-10 md:px-8 lg:px-10 bg-gradient-to-tl from-[#ffecec] via-[#ffe1e7] to-[#ffd4db] min-h-screen">
+        <div className="pt-8 md:px-3 bg-gradient-to-tl from-[#ffecec] via-[#ffe1e7] to-[#ffd4db] min-h-screen w-full">
           <Outlet />
         </div>
       </section>

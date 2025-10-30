@@ -61,7 +61,7 @@ const UpcomingBooking = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-4 border-pink-100 border-b pb-2">
         <h3 className="text-md font-semibold text-gray-800">
-          Upcoming Booking
+          Upcoming Bookings
         </h3>
         <button
           onClick={() => navigate("/bookings")}

@@ -5,7 +5,7 @@ import UpcomingBooking from "../../component/Main/Dashboard/UpCommingBookings";
 const DashboardHome = () => {
   return (
     <section className="w-full">
-      <div className=" px-3   pb-6">
+      <div className=" px-3 pb-6">
         <h1 className="text-xl font-semibold text-gray-800 pt-5">
           Dashboard Overview
         </h1>
@@ -15,21 +15,21 @@ const DashboardHome = () => {
           {/* Left: Income Graph */}
           <div className="col-span-1 rounded-lg p-1 md:p-2">
             {/* Give the chart a responsive, reliable height across breakpoints */}
-            <div className="h-64 sm:h-72 md:h-[38vh] lg:h-[42vh] xl:h-[46vh]">
+            <div className="h-full">
               <IncomeGraphChart />
             </div>
           </div>
 
           {/* Right: Service Popularity (Pie/Bar) */}
           <div className="col-span-1 rounded-lg p-1 md:p-2">
-            <div className="h-64 sm:h-72 md:h-[38vh] lg:h-[42vh] xl:h-[46vh]">
+            <div className="h-full">
               <ServicePopularityChart />
             </div>
           </div>
         </div>
 
         {/* Upcoming Bookings */}
-        <div className="mt-4 md:mt-6">
+        <div className="mt-4 md:mt-6 mx-2">
           <UpcomingBooking />
         </div>
       </div>
