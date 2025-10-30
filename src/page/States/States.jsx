@@ -33,7 +33,7 @@ const States = () => {
             <button
               key={state.code}
               onClick={() => toggleState(state.name)}
-              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium shadow-sm transition-all 
+              className={`flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium shadow-sm transition-all 
                 ${
                   isActive
                     ? "bg-green-500 text-white"

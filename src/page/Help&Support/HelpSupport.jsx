@@ -31,7 +31,7 @@ const contactMessages = [
 
 const HelpSupport = () => {
   return (
-    <div className="p-6">
+    <div className="p-6 overflow-x-auto md:w-[420px] lg:w-[680px] xl:w-full">
       <h1 className="text-xl font-semibold text-gray-800 mb-4">
         Help & Support Messages
       </h1>

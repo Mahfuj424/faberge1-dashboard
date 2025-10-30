@@ -99,11 +99,9 @@ const ManagerManagement = () => {
   };
 
   return (
-    <div className="p-6 min-h-screen">
+    <div className="p-6 min-h-screen overflow-x-auto md:w-[420px] lg:w-[680px] xl:w-full">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-semibold text-gray-800">
-          Managers
-        </h1>
+        <h1 className="text-xl font-semibold text-gray-800">Managers</h1>
 
         <button
           onClick={() => setShowCreateModal(true)}
