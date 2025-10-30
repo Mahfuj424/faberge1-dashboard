@@ -59,7 +59,7 @@ const Sidebar = () => {
   return (
     <>
       {/* 🔹 Mobile Header */}
-      <div className="lg:hidden flex items-center justify-between bg-[#e8aebf] text-white px-4 py-3 fixed top-0 left-0 right-0 z-40">
+      <div className="md:hidden flex items-center justify-between bg-[#e8aebf] text-white px-4 py-3 fixed top-0 left-0 right-0 z-40">
         <div className="flex items-center gap-2">
           <img src={logo} alt="logo" className="w-10 h-10" />
         </div>
@@ -72,7 +72,7 @@ const Sidebar = () => {
       </div>
 
       {/* 🔹 Desktop Sidebar */}
-      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-80 bg-[#e8aebf] text-white flex-col z-30 shadow-md">
+      <aside className="hidden md:flex fixed left-0 top-0 h-screen w-80 bg-[#e8aebf] text-white flex-col z-30 shadow-md">
         {/* Scrollable container */}
         <div className="flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-[#f7c1d0] scrollbar-track-[#e8aebf]/40">
           {/* Logo */}
